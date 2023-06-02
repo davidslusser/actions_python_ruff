@@ -1,0 +1,46 @@
+name: actions_python_ruff
+description: Github action for running python linting with ruff
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  options:
+    required: false
+    type: string
+    default: ""  
+  pip_install_command: 
+    description: "command used to install python dependancies"
+    required: false
+    type: string
+    default: "pip install ruff"
+  python_version:
+    description: "version of python to run action with"
+    required: false
+    type: string
+    default: "3.x"
+  src:
+    required: false
+    type: string
+    default: "."
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - name: "Setup Python ${{ inputs.python_version }}"
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ inputs.python_version }}
+    
+    - name: "Show Python Version"
+      run: python --version
+      shell: bash
+
+    - name: "Install Python Dependencies"
+      run: |
+        python -m pip install --upgrade pip
+        ${{ inputs.pip_install_command }}
+      shell: bash
+       
+    - name: "Run Ruff"
+      run: "ruff ${{ inputs.src }} ${{ inputs.options }}"
+      shell: bash
