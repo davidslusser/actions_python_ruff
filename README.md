@@ -1,5 +1,5 @@
 # actions_python_ruff
-A Github action for running python linting with ruff.
+A Github action for python linting with ruff.
 
 
 <br/>
@@ -37,6 +37,7 @@ jobs:
           python_version: "3.9"
 ```
 
+
 <br/>
 
 ## Inputs
@@ -44,3 +45,10 @@ jobs:
   - **options:** optional flags/parameters used in pytest command
   - **pip_install_command:** pip install command (defaults to "`pip install ruff`")
    - **python_version:** version of python to run workflow with (defaults to "`3.x`")
+
+
+<br/>
+
+## References
+ - https://beta.ruff.rs/docs/
+ - https://pypi.org/project/ruff/0.0.47/
