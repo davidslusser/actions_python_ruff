@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "ruff"
     steps:
-      - uses: davidslusser/actions_python_ruff@v1.0.0
+      - uses: davidslusser/actions_python_ruff@v1.0.1
 ```
 <br/>
 
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     name: "ruff"
     steps:
-      - uses: davidslusser/actions_python_ruff@v1.0.0
+      - uses: davidslusser/actions_python_ruff@v1.0.1
         with:
           src: "src"
           options: "--cov=src"
@@ -42,7 +42,7 @@ jobs:
 
 ## Inputs
   - **src:** source directory of code to check (defaults to "`.`")
-  - **options:** optional flags/parameters used in pytest command
+  - **options:** optional flags/parameters used in ruff command
   - **pip_install_command:** pip install command (defaults to "`pip install ruff`")
    - **python_version:** version of python to run workflow with (defaults to "`3.x`")
 
