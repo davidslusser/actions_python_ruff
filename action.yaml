@@ -5,22 +5,20 @@ branding:
   color: 'green'
 inputs:
   options:
+    description: "options to be passed to the ruff command"
     required: false
-    type: string
     default: ""  
   pip_install_command: 
     description: "command used to install python dependancies"
     required: false
-    type: string
     default: "pip install ruff"
   python_version:
     description: "version of python to run action with"
     required: false
-    type: string
     default: "3.x"
   src:
+    description: "source directory to run ruff against"
     required: false
-    type: string
     default: "."
 runs:
   using: "composite"
@@ -42,5 +40,5 @@ runs:
       shell: bash
        
     - name: "Run Ruff"
-      run: "ruff ${{ inputs.src }} ${{ inputs.options }}"
+      run: "ruff check ${{ inputs.src }} ${{ inputs.options }}"
       shell: bash
