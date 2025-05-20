@@ -46,7 +46,8 @@ runs:
     - name: "Run Ruff"
       run: |
         if [ -n "${{ inputs.command }}" ]; then
-          "${{ inputs.command }}"
+          else
+            ruff ${{ inputs.command }}
         else
           ruff check "${{ inputs.src }}" "${{ inputs.options }}"
         fi
