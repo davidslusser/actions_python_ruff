@@ -1,5 +1,5 @@
 name: actions_python_ruff
-description: Github action for running python linting with ruff
+description: Github action for running python linting/formatting with ruff
 branding:
   icon: 'check-circle'
   color: 'green'
@@ -9,7 +9,7 @@ inputs:
     required: false
     default: ""  
   pip_install_command: 
-    description: "command used to install python dependancies"
+    description: "command used to install python dependencies"
     required: false
     default: "pip install ruff"
   python_version:
@@ -20,6 +20,10 @@ inputs:
     description: "source directory to run ruff against"
     required: false
     default: "."
+  command:
+    description: "command to run ruff; overrides default command and options"
+    required: false
+    default: ""
 runs:
   using: "composite"
   steps:
@@ -40,5 +44,10 @@ runs:
       shell: bash
        
     - name: "Run Ruff"
-      run: "ruff check ${{ inputs.src }} ${{ inputs.options }}"
+      run: |
+        if [ -n "${{ inputs.command }}" ]; then
+          bash -c "${{ inputs.command }}"
+        else
+          ruff check "${{ inputs.src }}" "${{ inputs.options }}"
+        fi
       shell: bash
