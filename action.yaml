@@ -44,5 +44,10 @@ runs:
       shell: bash
        
     - name: "Run Ruff"
-      run: "${{ inputs.command != '' && inputs.command || 'ruff check ${{ inputs.src }} ${{ inputs.options }}' }}"
+      run: |
+        if [ -n "${{ inputs.command }}" ]; then
+          ${{ inputs.command }}
+        else
+          ruff check ${{ inputs.src }} ${{ inputs.options }}
+        fi
       shell: bash
